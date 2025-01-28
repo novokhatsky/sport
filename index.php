@@ -6,6 +6,9 @@ date_default_timezone_set('Asia/Novosibirsk');
 
 require_once 'models/autoload.php';
 
+$config_db = require_once 'config_db.php';
+
+$db = new Sport\Models\DbConnect($config_db);
 
 function check_cookie($session): bool {
     if ($session === 'ba3dce2394f727a218d1c8f8bce8b6b8389b1cd2') {
