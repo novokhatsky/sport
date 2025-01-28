@@ -10,11 +10,11 @@ $pass = htmlspecialchars($_POST['pass']);
 
 // запрос к бд с целю получить hash пароля соответсвующий пользователю
 
-// 123
-$hash = '$2y$10$69T6b/53xbEWPr4MDkd5C.OlH2Y5pPzzP6Vf982zhhX1E0HKwMVQO';
+$hash = '$2y$10$hHvu952/LqJla7aIXxvBMus2FWnGewD3MGtLhKA9SctT2fmApUlCO';
 
 if (password_verify($pass, $hash)) {
     $_SESSION['id_user'] = 1;
+    setcookie('session', 'ba3dce2394f727a218d1c8f8bce8b6b8389b1cd2', strtotime('+7 days'));
     header('Location: /');
     exit;
 } else {
