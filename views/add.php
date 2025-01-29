@@ -17,7 +17,7 @@
 
             <label>
                 Вид тренировки:
-                <select name="id_training">
+                <select name="type_training_id">
                 <?php
                     foreach ($type_training as $training) {
                         echo '<option value="' . $training['id'] . '">' . $training['name'] . '</option>';
