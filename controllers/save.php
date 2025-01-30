@@ -16,8 +16,13 @@ $type_training_id = $_POST['type_training_id'] ?? filter_var($_POST['type_traini
 $dt = $_POST['dt'] ?? htmlspecialchars($_POST['dt']);
 $tm = $_POST['tm'] ?? htmlspecialchars($_POST['tm']);
 $distance = $_POST['distance'] ?? htmlspecialchars($_POST['distance']);
-$duration = $_POST['duration'] ?? htmlspecialchars($_POST['duration']);
+$duration_h = $_POST['duration_h'] ?? htmlspecialchars($_POST['duration_h']);
+$duration_m = $_POST['duration_m'] ?? htmlspecialchars($_POST['duration_m']);
+$duration_s = $_POST['duration_s'] ?? htmlspecialchars($_POST['duration_s']);
 $note = $_POST['note'] ?? htmlspecialchars($_POST['note']);
+
+
+$duration = $duration_h . ':' . $duration_m . ':' . $duration_s;
 
 $pace = gmdate('H:i:s', calcPace($distance, $duration));
 
