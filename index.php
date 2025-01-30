@@ -45,11 +45,12 @@ if ($action !== 'login' && !isset($_SESSION['sportsman_id'])) {
         }
     }
 
-
     // пользователь не автоизован, переход на страницу логина
     require_once 'views/login.php';
     exit;
 }
+
+$sportsman_id = $_SESSION['sportsman_id'];
 
 $fullname = 'controllers/' . $action . '.php';
 

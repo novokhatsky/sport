@@ -12,7 +12,6 @@ function calcPace($distance, $duration)
 }
 
 
-$sportsman_id = $_SESSION['sportsman_id']; 
 $type_training_id = $_POST['type_training_id'] ?? filter_var($_POST['type_training_id'], FILTER_VALIDATE_INT);
 $dt = $_POST['dt'] ?? htmlspecialchars($_POST['dt']);
 $tm = $_POST['tm'] ?? htmlspecialchars($_POST['tm']);
