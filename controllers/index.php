@@ -1,5 +1,7 @@
 <?php
 
+$sportsman_id = $_SESSION['sportsman_id'];
+
 $training = $db->getList(
     'select
         tt.name as vid,

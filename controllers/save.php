@@ -25,6 +25,7 @@ $note = $_POST['note'] ?? htmlspecialchars($_POST['note']);
 $duration = $duration_h . ':' . $duration_m . ':' . $duration_s;
 
 $pace = gmdate('H:i:s', calcPace($distance, $duration));
+$sportsman_id = $_SESSION['sportsman_id'];
 
 try {
     $res = $db->insertData(
