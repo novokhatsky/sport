@@ -10,6 +10,7 @@ $pass = htmlspecialchars($_POST['pass']);
 
 // запрос к бд с целю получить hash пароля соответсвующий пользователю
 
+/* @var $db \Sport\Models\DbConnect */
 $userData = $db->getRow(
     'select id, pass from sportsman where login = :login',
     ['login' => $login]
@@ -27,6 +28,6 @@ if (password_verify($pass, $userData['pass'])) {
     setcookie('session', 'ba3dce2394f727a218d1c8f8bce8b6b8389b1cd2', strtotime('+7 days'));
     header('Location: /');
     exit;
-} else {
-    require_once 'views/login.php';
 }
+
+require_once 'views/login.php';

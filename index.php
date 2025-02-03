@@ -11,19 +11,11 @@ $config_db = require_once 'config_db.php';
 $db = new Sport\Models\DbConnect($config_db);
 
 function check_cookie($session): bool {
-    if ($session === 'ba3dce2394f727a218d1c8f8bce8b6b8389b1cd2') {
-        // авторизуем пользователя
-        $_SESSION['sportsman_id'] = 1;
-        // обновляем куку
-        //
-        // !!!!   дублировние кода, подобные шаги делаются при авторизации
-        return true;
-    } else {
-        // проверка не пройдена
-        return false;
-    }
-}
+    // todo формируем ожидаемое значение куки - $hash
+    $hash = 'ba3dce2394f727a218d1c8f8bce8b6b8389b1cd2';
 
+    return $session === $hash;
+}
 
 if ($_SERVER['REQUEST_URI'] === '/') {
     $action = 'index';
@@ -32,20 +24,19 @@ if ($_SERVER['REQUEST_URI'] === '/') {
     $action = htmlspecialchars($params[1]);
 }
 
-if (!isset($_SESSION['sportsman_id'])) {
+if (isset($_COOKIE['session'])) {
+    $session = htmlspecialchars($_COOKIE['session']);
 
-    if (isset($_COOKIE['session'])) {
-
-        $session = htmlspecialchars($_COOKIE['session']);
-
-        if (check_cookie($session)) {
-            $_SESSION['sportsman_id'] = 1;
-        } else {
-            $action = 'login';
-        }
+    if (check_cookie($session)) {
+        $_SESSION['sportsman_id'] = 1;
+        setcookie('session', 'ba3dce2394f727a218d1c8f8bce8b6b8389b1cd2', strtotime('+7 days'));
     } else {
-        $action = 'login';
+        setcookie('session', '', strtotime('-7 days'));
     }
+}
+
+if (!isset($_SESSION['sportsman_id'])) {
+    $action = 'login';
 }
 
 $fullname = 'controllers/' . $action . '.php';
