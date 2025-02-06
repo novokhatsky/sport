@@ -33,7 +33,14 @@ if (password_verify($pass, $userData['pass'])) {
         setcookie('session', $hash, strtotime('+7 days'));
     }
 
-    header('Location: /');
+    // если зашел тренер, то ему доступна панель управления
+    // todo формирование панели
+    if ($_SESSION['sportsman_id'] === 2) {
+        header('Location: /admin');
+    } else {
+        header('Location: /');
+    }
+
     exit;
 }
 
