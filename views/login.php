@@ -13,7 +13,7 @@
         <div class="row">
             <div class="large-4 columns">
                 <label>логин:
-                    <input type="password" name="login">
+                    <input type="text" name="login">
                 </label>
             </div>
         </div>

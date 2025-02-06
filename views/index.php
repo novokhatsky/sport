@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <div class="row"><h3>Список тренировок</h3></div>
+    <div class="row"><h3>Список тренировок <?=$sportsman_id?></h3></div>
         <?php foreach ($training as $row) { ?>
             <div class="row">
                 <div class="large-2 columns"><?=$row['dt']?></div>

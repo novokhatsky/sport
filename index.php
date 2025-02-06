@@ -10,13 +10,6 @@ $config_db = require_once 'config_db.php';
 
 $db = new Sport\Models\DbConnect($config_db);
 
-function check_cookie($session): bool {
-    // todo формируем ожидаемое значение куки - $hash
-    $hash = 'ba3dce2394f727a218d1c8f8bce8b6b8389b1cd2';
-
-    return $session === $hash;
-}
-
 if ($_SERVER['REQUEST_URI'] === '/') {
     $action = 'index';
 } else {
@@ -27,9 +20,16 @@ if ($_SERVER['REQUEST_URI'] === '/') {
 if (isset($_COOKIE['session'])) {
     $session = htmlspecialchars($_COOKIE['session']);
 
-    if (check_cookie($session)) {
-        $_SESSION['sportsman_id'] = 1;
-        setcookie('session', 'ba3dce2394f727a218d1c8f8bce8b6b8389b1cd2', strtotime('+7 days'));
+    $sportsman_id = $db->getValue(
+        'select sportsman_id from sessions where session = :session',
+        ['session' => $session]
+    );
+
+    $hash = md5($sportsman_id . $_SERVER['REMOTE_ADDR'] . 'qg67!K3Fq091HJ');
+
+    if ($hash === $session) {
+        $_SESSION['sportsman_id'] = $sportsman_id;
+        setcookie('session', $session, strtotime('+7 days'));
     } else {
         setcookie('session', '', strtotime('-7 days'));
     }
