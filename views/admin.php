@@ -16,11 +16,11 @@
     <div class="row"><h3>Панель управления</h3></div>
     
     <div class="row">
-        <a href="/add"><button class="button">Спортсмены</button></a>
+        <a href="/sportsmans"><button class="button">Спортсмены</button></a>
     </div>
     
     <div class="row">
-        <a href="/add"><button class="button">Виды тренировок</button></a>
+        <a href="/trainings"><button class="button">Виды тренировок</button></a>
     </div>
     
     <div class="row">

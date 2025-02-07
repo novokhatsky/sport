@@ -39,6 +39,17 @@ if (!isset($_SESSION['sportsman_id'])) {
     $action = 'login';
 }
 
+// проверка на доступ к админке
+$admins_page = [
+    'admin',
+    'sportsmans',
+    'trainings'
+];
+
+if (in_array($action, $admins_page) && $_SESSION['sportsman_id'] !== 2) {
+    $action = 'index';
+}
+
 $fullname = 'controllers/' . $action . '.php';
 
 require_once file_exists($fullname) ? $fullname : 'views/404.html';
